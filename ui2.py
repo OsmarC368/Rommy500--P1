@@ -604,7 +604,7 @@ def draw_player_hand(player, rect, cuadros_interactivos=None, cartas_ref=None, o
         min_sep = int(card_width * 0.65)
         if n <= 6:
             solapamiento = base_sep
-        elif n >= 12:
+        elif n <= 12:
             solapamiento = min_sep
         else:
             solapamiento = int(base_sep - (base_sep - min_sep) * (n - 6) / 6)
