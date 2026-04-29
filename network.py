@@ -218,8 +218,8 @@ class NetworkManager:
                 # Verificar contraseña
                 if client_password == self.currentServer['password']:  #self.password:
                     
-                    if len(self.connected_players) <= self.currentServer['max_players']:
-                        if len(self.connected_players) <= self.currentServer['max_players']:
+                    if len(self.connected_players) < self.currentServer['max_players']:
+                        if len(self.connected_players) < self.currentServer['max_players']:
                             # Nuevo...
                             # Verificando si es reconexion o jugador nuevo
                             player_id = None
