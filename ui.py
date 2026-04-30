@@ -895,8 +895,8 @@ class   UIManager:
         self.LOBBY_BACK_BUTTON.update(self.SCREEN)
         # ---------------------------------------------------------------------
 
-        # Comprobar inicio de UI2 desde mensajes recibidos
-        if self.process_received_messages() == "launch_ui2":
+        # Comprobar inicio de UI2 desde mensajes recibidos y del buffer seguro
+        if self.process_received_messages() == "launch_ui2" or self.network_manager.get_msgStartGame() == "launch_ui2":
             self.playGamePlayer = True
 
         return MENU_MOUSE_POS
