@@ -97,8 +97,6 @@ last_taken_player = None
 #Cambio Boton Menu / Salir
 
 
-
-
 def show_menu_modal(screen, WIDTH, HEIGHT, ASSETS_PATH):
     import pygame
     import os
@@ -620,7 +618,7 @@ def draw_player_hand(player, rect, cuadros_interactivos=None, cartas_ref=None, o
             solapamiento = int(base_sep - (base_sep - min_sep) * (n - 6) / 6)
         total_width = card_width + (n - 1) * solapamiento
         if total_width > rect.width:
-            solapamiento = max(8, (rect.width - card_width) // (n - 1))
+            solapamiento = max(4, (rect.width - card_width) // (n - 1))
         start_x = rect.x + (rect.width - (card_width + (n - 1) * solapamiento)) // 2
     else:
         solapamiento = 0
