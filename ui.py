@@ -142,7 +142,7 @@ class InputBox:
         self.rect.w = width
         # No usar self.clock ni lógica global aquí.
         # Sólo mantener la caja actualizada (la UI principal dibuja todo lo demás).
-        return
+        #return
         self.draw_background()
 
         # Dibuja el título siempre, sin importar el menú
@@ -202,7 +202,19 @@ class InputBox:
     def draw(self, screen):
         pygame.draw.rect(screen, pygame.Color("#FFFFFF"), self.rect, border_radius=12)
         pygame.draw.rect(screen, self.color, self.rect, 2, border_radius=12)
-        screen.blit(self.txt_surface, (self.rect.x + 8, self.rect.y + (self.rect.h - self.txt_surface.get_height())//2))
+        inner_w = max(0, self.rect.w - (self.padding_x * 2))
+        visible_text = self.text
+        while visible_text and self.font.size(visible_text)[0] > inner_w:
+            visible_text = visible_text[1:]
+
+        text_surf = self.font.render(visible_text, True, (0, 0, 0))
+        old_clip = screen.get_clip()
+        screen.set_clip(self.rect)
+        screen.blit(
+            text_surf,
+            (self.rect.x + self.padding_x, self.rect.y + (self.rect.h - text_surf.get_height()) // 2),
+        )
+        screen.set_clip(old_clip)
 
 # ===========================
 # Clase que maneja la interfaz
@@ -236,7 +248,7 @@ class   UIManager:
         
         # Inicializar componentes de la UI (botones, cajas de texto, etc.)
         self.init_components()
-
+        
         self.servers = []      #Lista de servidores encontrados
         self.selectedServer = None  #ALmacena el servidor selecionado
         self.isSeletedServer = False #Fija el servidor seleccionado
