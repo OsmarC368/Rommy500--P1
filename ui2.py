@@ -86,9 +86,6 @@ last_taken_card = None
 last_taken_player = None
 #Cambio Boton Menu / Salir
 
-
-
-
 def show_menu_modal(screen, WIDTH, HEIGHT, ASSETS_PATH):
     import pygame
     import os
